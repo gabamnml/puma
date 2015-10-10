@@ -42,7 +42,7 @@ Capistrano::Configuration.instance.load do
     if config_file
       "-q -d -e #{puma_env} -C #{config_file}"
     else
-      "-q -d -e #{puma_env} -b '#{puma_socket}' -S #{state_path} --control 'unix://#{shared_path}/sockets/pumactl.sock'"
+      "-q -d -e #{puma_env} -b '#{puma_socket}' -S #{state_path} --control 'unix://#{shared_path}/sockets/pumactl.sock' -S #{puma_state} >> #{puma_log} 2>&1 &"
     end
   end
 
